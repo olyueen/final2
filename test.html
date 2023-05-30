@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #ffc107, #17a2b8, #dc3545);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    .card {
+      width: 380px; /* 調整卡片的寬度 */
+      height: 508px; /* 調整卡片的高度 */
+      background: #07182E;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+      transform: translateY(-20px);
+    }
+
+    .card h2 {
+      z-index: 1;
+      color: white;
+      font-size: 2.5em; /* 調整字體大小 */
+      line-height: 1.2em; /* 調整行距 */
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+      height: 130%;
+      animation: rotBGimg 3s linear infinite;
+      transition: all 0.2s linear;
+    }
+
+    @keyframes rotBGimg {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      background: #07182E;
+      inset: 5px;
+      border-radius: 15px;
+    }
+
+    .card img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+      z-index: 2;
+    }
+
+    .card:hover img {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.25;
+      transition: 0.5s;
+    }
+
+    .card:hover .content {
+      transform: scale(1);
+      bottom: 25px;
+    }
+
+    .card .content {
+      position: absolute;
+      z-index: 3;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0);
+      transition: 0.5s;
+    }
+
+    .content .title {
+      position: relative;
+      color: #fff;
+      font-weight: 500;
+      line-height: 1em;
+      font-size: 1em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .content .title span {
+      font-weight: 300;
+      font-size: 0.70em;
+    }
+
+    .content .sci {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .sci li {
+      list-style: none;
+    }
+
+    .sci li .fa-brands {
+      width: 14px;
+    }
+
+    .sci li .fa-facebook {
+      width: 10px;
+    }
+
+    .sci li a {
+      position: relative;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.2);
+      fill: currentColor;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      transition: 0.5s;
+    }
+
+    .sci li a:hover {
+      fill: currentColor;
+      color: rgba(255, 255, 255, 1);
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://media.discordapp.net/attachments/881023379442909204/1100461644036976740/F983B27A-EBE3-4A04-AA1C-03BF0AE073E9.jpg" alt="My Photo">
+    <div class="content">
+      <h2 class="title">吳昀璟<br><span>淡江教育科技學系</span></h2>
+      <ul class="sci">
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 引入 Swiper CSS顯示格式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #ffc107, #17a2b8, #dc3545);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+    /* 設定.buttons的上外邊距 */
+    .buttons {
+      margin-top: 30px;
+    }
+
+    /* 設定.swiper的寬度和高度 */
+    .swiper {
+      width: 760px;
+      height: 1160px;
+      background-color: transparent; /* 設置背景為透明 */
+    }
+
+    /* 設定.swiper-slide的位置、背景顏色、顯示方式和對齊方式 */
+    .swiper-slide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 設定.swiper-slide中的img的顯示方式、寬度、高度、對象適應方式和背景顏色 */
+    .swiper-slide img {
+      display: block;
+      width: 100%; /* 將寬度更改為所需的大小 */
+      height: auto; /* 將高度設置為自動以保持長寬比 */
+      object-fit: cover;
+      background-color: #8acc7d; /* 將背景顏色更改為所需的顏色 */
+    }
+
+    /* 設定.swiper中的button的寬度、高度、顏色、背景和過渡效果 */
+    .swiper button {
+      color:#800080;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: none;
+      outline: none;
+      transition: opacity 0.25s;
+    }
+    .swiper button:hover {
+      opacity: 0.8;
+    }
+
+    /* 設定.swiper中的button的:before和:after的字體大小 */
+    .swiper button::before,
+    .swiper button::after {
+      font-size: 24px;
+    }
+
+    .card {
+      width: 380px; /* 調整卡片的寬度 */
+      height: 508px; /* 調整卡片的高度 */
+      background: #07182E;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+      transform: translateY(-20px);
+    }
+
+    .card h2 {
+      z-index: 1;
+      color: white;
+      font-size: 2.5em; /* 調整字體大小 */
+      line-height: 1.2em; /* 調整行距 */
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+      height: 130%;
+      animation: rotBGimg 3s linear infinite;
+      transition: all 0.2s linear;
+    }
+
+    @keyframes rotBGimg {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      background: #07182E;
+      inset: 5px;
+      border-radius: 15px;
+    }
+
+    .card img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+      z-index: 2;
+    }
+
+    .card:hover img {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0.25;
+      transition: 0.5s;
+    }
+
+    .card:hover .content {
+      transform: scale(1);
+      bottom: 25px;
+    }
+
+    .card .content {
+      position: absolute;
+      z-index: 3;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0);
+      transition: 0.5s;
+    }
+
+    .content .title {
+      position: relative;
+      color: #fff;
+      font-weight: 500;
+      line-height: 1em;
+      font-size: 1em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .content .title span {
+      font-weight: 300;
+      font-size: 0.70em;
+    }
+
+    .content .sci {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .sci li {
+      list-style: none;
+    }
+
+    .sci li .fa-brands {
+      width: 14px;
+    }
+
+    .sci li .fa-facebook {
+      width: 10px;
+    }
+
+    .sci li a {
+      position: relative;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.2);
+      fill: currentColor;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      transition: 0.5s;
+    }
+
+    .sci li a:hover {
+      fill: currentColor;
+      color: rgba(255, 255, 255, 1);
+    }
+    /* CSS for the sidebar navigation */
+    .sidebar {
+      height: 100vh;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: transparent; /* 修改背景顏色為透明 */
+      padding-top: 20px;
+    }
+    
+    .sidebar .menu-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    
+    
+    .sidebar .menu-toggle .icon:before,
+    .sidebar .menu-toggle .icon:after {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 5px;
+      background-color: #1f2937; /* 暗色按鈕顏色 */
+    }
+    
+    .sidebar .menu-toggle .icon:before {
+      transform: translateY(-5px);
+    }
+    
+    .sidebar .menu-toggle .icon:after {
+      transform: translateY(3px);
+    }
+    
+    .sidebar .menu-items {
+      display: none;
+      text-align: center; /* 新增這行以置中選單內容 */
+      padding: 10px 0; /* 新增這行以增加內容的上下間距 */
+    }
+
+    .sidebar .menu-items.open {
+      display: block;
+    }
+
+    .sidebar .menu-items a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      transition: 0.5s;
+      background: #1e1e1e;
+      color: greenyellow;
+      box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
+    }
+
+    button:hover {
+      animation: a 0.5s 1 linear;
+    }
+
+    
+    .sidebar .menu-items a:hover {
+      background-color: #63e01b;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuItems = document.querySelector('.menu-items');
+        
+        menuToggle.addEventListener('click', function() {
+          menuItems.classList.toggle('open');
+        });
+      });
+    </script>
+
+</head>
+<body>
+  <div class="sidebar">
+    <div class="menu-toggle">
+      <button class="menu-button">Menu</button>
+    </div>
+    <div class="menu-items">
+      <a href="home.html">首頁</a>
+      <a href="about me.html">關於我</a>
+      <a href="project.html">課堂學習呈現</a>
+    </div>
+  </div>
+  
+  <!-- Swiper 輪播 -->
+<div id="app">
+    <div class="swiper carousel">
+      <div class="swiper-wrapper">
+        <!-- Card 1 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="https://media.discordapp.net/attachments/881023379442909204/1100461644036976740/F983B27A-EBE3-4A04-AA1C-03BF0AE073E9.jpg" alt="My Photo">
+            <div class="content">
+              <h2 class="title">吳昀璟<br><span>淡江教育科技學系</span></h2>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 2 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <img src="https://media.discordapp.net/attachments/881023379442909204/1112814513331372042/873d2e85606dd6e9.png?width=940&height=468" alt="My Photo">
+            <div class="content">
+              <div class="swiper-description">
+                <h2>大一下期末程式</h2>
+                <p style="color: rgb(255, 255, 255);">這段程式碼可以透過滑鼠鼠標的移動改變背景線條的排列方式跟形狀 其中最為重要的是在點擊鼠標後會切換為3D文字</p>
+                <div class="nav">
+                  <h5>
+                    <a href="https://openprocessing.org/sketch/1530876" target="_blank">了解更多</a>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="swiper-slide">
+         <div class="card">
+             <img src="https://cdn.discordapp.com/attachments/881023379442909204/1113050977499623444/2.png" alt="My Photo">
+             <div class="content">
+             <div class="swiper-description">
+                 <h2>大一練習</h2>
+                 <p style="color: rgb(255, 255, 255);">這段程式碼主要可以複製輸入的內容並且可透過滾輪改變大小且可透過顏色選擇器改變顏色 按鈕改變文字表現形式</p>
+                 <div class="nav">
+                  <h5>
+                    <a href="https://openprocessing.org/sketch/1598117" target="_blank">了解更多</a>
+                  </h5>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="swiper-slide">
+            <div class="card">
+                <img src="https://cdn.discordapp.com/attachments/881023379442909204/1113052320847122462/image.png" alt="My Photo">
+                <div class="content">
+                <div class="swiper-description">
+                    <h2>大一下期末程式</h2>
+                    <p style="color: rgb(255, 255, 255);">這段程式碼可以透過滑鼠鼠標的移動改變背景線條的排列方式跟形狀 其中最為重要的是在點擊鼠標後會切換為3D文字</p>
+                    <div class="nav">
+                     <h5>
+                        <a href="https://openprocessing.org/sketch/1530876" target="_blank">了解更多</a>
+                     </h5>
+                    </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+        </div>
+  
+      <!-- 添加切換按鈕 -->
+      <div class="swiper-buttons">
+        <button class="swiper-button-prev">Prev</button>
+        <button class="swiper-button-next">Next</button>
+      </div>
+  
+      <!-- 添加分頁器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  
+   <!-- 引入 Swiper JS腳本 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    // 初始化Swiper輪播
+    var swiper = new Swiper(".swiper.carousel", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</body>
+</html>

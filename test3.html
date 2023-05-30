@@ -1,0 +1,249 @@
+<html>
+<head>
+  <!-- 引入 week7_1.css 樣式表 -->
+  <link rel="stylesheet" href="week7_1.css" />
+  <!-- 引入 Swiper CSS顯示格式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <style>
+    /* 將所有元素的margin和padding設為0 */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 將html的寬度和高度設為100% */
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 設定body的字體和背景顏色，並將其設為網格顯示 */
+    body {
+      font-family: "Poppins", sans-serif;
+      display: grid;
+      place-items: center;
+      background-color: #eee;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* 設定.buttons的上外邊距 */
+    .buttons {
+      margin-top: 30px;
+    }
+
+    /* 設定.swiper的寬度和高度 */
+    .swiper {
+      width: 760px;
+      height: 1160px;
+    }
+
+    /* 設定.swiper-slide的位置、背景顏色、顯示方式和對齊方式 */
+    .swiper-slide {
+      position: relative;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff7526;
+    }
+
+    /* 設定.swiper-slide中的img的顯示方式、寬度、高度、對象適應方式和背景顏色 */
+    .swiper-slide img {
+      display: block;
+      width: 100%; /* 將寬度更改為所需的大小 */
+      height: auto; /* 將高度設置為自動以保持長寬比 */
+      object-fit: cover;
+      background-color: #8acc7d; /* 將背景顏色更改為所需的顏色 */
+    }
+
+    /* 設定.swiper中的button的寬度、高度、顏色、背景和過渡效果 */
+    .swiper button {
+      width: 50px;
+      height: 50px;
+      color: #f80404;
+      background: transparent;
+      border: none;
+      outline: none;
+      transition: opacity 0.25s;
+    }
+
+    /* 當滑鼠移至.swiper button上時，將其不透明度設為0.8 */
+    .swiper button:hover {
+      opacity: 0.8;
+    }
+
+    /* 設定.swiper中的button的:before和:after的字體大小 */
+    .swiper button::before,
+    .swiper button::after {
+      font-size: 24px;
+    }
+
+    /* 設定.swiper-pagination-bullet的背景顏色 */
+    .swiper-pagination-bullet {
+      background-color: #fff;
+    }
+
+    /* 設定.swiper-description的位置、背景和顏色 */
+    .swiper-description {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      isolation: isolate;
+      padding: 50px 25px 25px;
+      color: #fff;
+    }
+
+    /* 設定.swiper-description::before的內容、位置、z-index、寬度、高度和背景圖片 */
+    .swiper-description::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.8) 50%);
+    }
+
+    /* 設定.swiper-description h2的字體大小、字母間距、文本轉換和顏色 */
+    .swiper-description h2 {
+      font-size: 42px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff; /* 將顏色更改為所需的顏色 */
+    }
+
+    /* 設定.swiper-description p的字體大小、最大寬度、下外邊距和顏色 */
+    .swiper-description p {
+      font-size: 20px;
+      max-width: 50%;
+      margin-bottom: 15px;
+      color: #ffffff; /* 將顏色更改為所需的顏色 */
+    }
+
+    /* 設定h5的寬度、高度、背景顏色、邊框、顏色、內邊距、字體大小和游標 */
+    h5 {
+      width: 75px;
+      height: 25px;
+      background-color: beige;
+      border: none;
+      color: rgb(233, 229, 22);
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* 設定h6的顏色、字體大小、位置和右外邊距 */
+    h6 {
+      color: rgb(233, 229, 22);
+      font-size: 60px;
+      position: absolute;
+      bottom: 35px;
+      right: -535px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Swiper 輪播 -->
+  <div id="app">
+    <div class="swiper carousel">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="https://i.postimg.cc/nr7b1TbS/image.jpg" alt="Slide 1" />
+          <div class="swiper-description">
+            <h2>吳昀璟</h2>
+            <p>410730161</p>
+            <h6>淡江教育科技學系</h6>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <iframe src="https://openprocessing.org/sketch/1909240/embed/" width="100%" height="100%"></iframe>
+          <div class="swiper-description">
+            <h2>大一期中程式</h2>
+            <p>
+               這段程式碼可以透過鼠標的移動去改變人臉的位置並且在鼠標點擊後會旋轉向下且在碰到畫面最底時會回彈
+            </p>
+            <div class="nav">
+              <h5>
+                <a href="https://openprocessing.org/sketch/1909240" target="_blank">了解更多</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <iframe src="https://openprocessing.org/sketch/1571375/embed/" width="100%" height="100%"></iframe>
+          <div class="swiper-description">
+            <h2>大一練習</h2>
+            <p>
+              這段程式碼主要可以複製輸入的內容並且可透過滾輪改變大小且可透過顏色選擇器改變顏色 按鈕改變文字表現形式
+            </p>
+            <div class="nav">
+              <h5>
+                <a href="https://openprocessing.org/sketch/1598117" target="_blank">了解更多</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <iframe src="https://openprocessing.org/sketch/1598117/embed/" width="100%" height="100%"></iframe>
+          <div class="swiper-description">
+            <h2>大一期末程式</h2>
+            <p>
+              這段程式碼可以透過滑鼠鼠標的移動改變背景顏色及物體形狀大小 拉動滑桿則可以改變物體形狀從十邊形變星形
+            </p>
+            <div class="nav">
+              <h5>
+                <a href="https://openprocessing.org/sketch/1598117" target="_blank">了解更多</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <iframe src="https://openprocessing.org/sketch/1530876/embed/" width="100%" height="100%"></iframe>
+          <div class="swiper-description">
+            <h2>大一下期末程式</h2>
+            <p>
+              這段程式碼可以透過滑鼠鼠標的移動改變背景線條的排列方式跟形狀 其中最為重要的是在點擊鼠標後會切換為3D文字
+            </p>
+            <div class="nav">
+              <h5>
+                <a href="https://openprocessing.org/sketch/1530876" target="_blank">了解更多</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 添加切換按鈕 -->
+      <div class="swiper-buttons">
+        <button class="swiper-button-prev">Prev</button>
+        <button class="swiper-button-next">Next</button>
+      </div>
+      <!-- 添加分頁器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <!-- 引入 Swiper JS腳本 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    // 初始化Swiper輪播
+    var swiper = new Swiper(".swiper.carousel", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</body>
+</html>
